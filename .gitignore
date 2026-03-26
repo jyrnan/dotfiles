@@ -1,0 +1,11 @@
+# Local configuration files (for sensitive information)
+zsh/zshrclocal
+.zshrclocal
+
+# Temporary files
+*.swp
+*~
+.DS_Store
+
+# Oh-my-zsh cache
+.oh-my-zsh/

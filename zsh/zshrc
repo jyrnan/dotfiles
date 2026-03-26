@@ -1,0 +1,45 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load
+ZSH_THEME="robbyrussell"
+
+# Plugins to use
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  docker
+  sudo
+)
+
+# Standard Oh My Zsh settings
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy-mm-dd"
+
+source $ZSH/oh-my-zsh.sh
+
+# --- OS Specific Configuration ---
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS Specific
+    alias ls='ls -G'
+    # Homebrew environment (if installed in default Apple Silicon path)
+    if [[ -f /opt/homebrew/bin/brew ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Linux/Ubuntu Specific
+    alias ls='ls --color=auto'
+fi
+
+# --- Generic Aliases ---
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias vi='vim'
+alias reload='source ~/.zshrc'
+
+# --- Load local/sensitive config if it exists ---
+if [[ -f "$HOME/.zshrclocal" ]]; then
+    source "$HOME/.zshrclocal"
+fi

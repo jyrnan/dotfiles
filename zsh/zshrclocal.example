@@ -1,0 +1,10 @@
+# This file is for local and sensitive configurations.
+# It should be copied to ~/.zshrclocal and modified.
+# This file is ignored by git.
+
+# Example: API keys
+# export GITHUB_TOKEN="your_token_here"
+# export OPENAI_API_KEY="your_api_key_here"
+
+# Example: Local environment variables
+# export NODE_ENV="development"
