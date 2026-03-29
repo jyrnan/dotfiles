@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load
-ZSH_THEME="robbyrussell"
+ZSH_THEME="ys"
 
 # Plugins to use
 plugins=(
