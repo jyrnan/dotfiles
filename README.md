@@ -4,7 +4,7 @@ A cross-platform dotfiles repository designed for quick setup on a new system.
 
 ## Features
 -   Supports **macOS** (using Homebrew) and **Ubuntu** (using apt).
--   Automated installation of `zsh`, `oh-my-zsh`, and essential plugins.
+-   Automated installation of `zsh`, `vim`, `oh-my-zsh`, and essential plugins.
 -   Modular configuration with `zshrclocal` for sensitive information.
 -   One-line installation command.
 
@@ -32,6 +32,7 @@ Alternatively, you can run it directly:
 -   `zsh/zshrc`: The main Zsh configuration file (symlinked to `~/.zshrc`).
 -   `zsh/zshrclocal`: (Optional) Local/sensitive configurations (ignored by git).
 -   `zsh/zshrclocal.example`: Example for the local configuration file.
+-   `vim/vimrc`: The main Vim configuration file (symlinked to `~/.vimrc`).
 
 ## Post-Installation
 After installation, you can add your sensitive data (like API keys) to `~/.zshrclocal`.

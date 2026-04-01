@@ -17,12 +17,12 @@ if [[ "$OS_NAME" == "Darwin" ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     # Install tools
-    brew install git curl zsh
+    brew install git curl zsh vim
 elif [[ "$OS_NAME" == "Linux" ]]; then
     if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ]; then
         echo -e "${GREEN}Detected Ubuntu/Debian${NC}"
         sudo apt update
-        sudo apt install -y git curl zsh build-essential
+        sudo apt install -y git curl zsh vim build-essential
     else
         echo "Unsupported Linux distribution"
         exit 1
@@ -76,6 +76,18 @@ if [ ! -f "$HOME/.zshrclocal" ]; then
     cp "$DOTFILES_DIR/zsh/zshrclocal.example" "$HOME/.zshrclocal"
     echo "Created ~/.zshrclocal from template."
 fi
+
+# --- Configure Vim ---
+echo -e "${BLUE}Configuring Vim...${NC}"
+
+# Backup existing .vimrc
+if [ -f "$HOME/.vimrc" ] && [ ! -L "$HOME/.vimrc" ]; then
+    echo "Backing up existing .vimrc to .vimrc.bak"
+    mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
+fi
+
+# Symlink .vimrc
+ln -sf "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
 
 # --- Final Steps ---
 echo -e "${GREEN}Installation complete!${NC}"
