@@ -1,12 +1,20 @@
+" Enable syntax highlighting for better code readability
 syntax on
 
+" Enable filetype plugins and indentation rules based on file type
 filetype plugin indent on
 
+" Set a POSIX flag for compatibility with scripts/plugins that may check this
 let g:is_posix = 1
 
+" Force shell script files to be treated as sh
 autocmd BufNewFile,BufRead *.sh set filetype=sh
 
+" Enable command completion menu (wildmenu) for nicer command input
 set wildmenu
 
+" Show absolute line numbers
 set number
+
+" Show relative line numbers for easier relative jumps (e.g., 5j/5k)
 set relativenumber

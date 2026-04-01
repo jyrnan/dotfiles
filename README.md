@@ -34,6 +34,16 @@ Alternatively, you can run it directly:
 -   `zsh/zshrclocal.example`: Example for the local configuration file.
 -   `vim/vimrc`: The main Vim configuration file (symlinked to `~/.vimrc`).
 
+## Vim Support
+-   Automatically installs Vim and links `vim/vimrc` to `~/.vimrc` at install time.
+-   Includes basic configurations:
+    - `syntax on`
+    - `filetype plugin indent on`
+    - command line completion with `set wildmenu`
+    - absolute and relative line numbering
+    - shell script file type detection
+-   Add more Vim customizations in `vim/vimrc` and commit to this repo for cross-device sync.
+
 ## Post-Installation
 After installation, you can add your sensitive data (like API keys) to `~/.zshrclocal`.
 
