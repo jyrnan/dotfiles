@@ -43,3 +43,35 @@ alias reload='source ~/.zshrc'
 if [[ -f "$HOME/.zshrclocal" ]]; then
     source "$HOME/.zshrclocal"
 fi
+
+# Auto sync terminal proxy with macOS system proxy
+sync_system_proxy() {
+    local service proxy_host proxy_port socks_host socks_port
+
+    # 通常是 Wi-Fi；如果你主要用有线网络，可改成 Ethernet
+    service="Wi-Fi"
+
+    proxy_host=$(networksetup -getwebproxy "$service" 2>/dev/null | awk '/Server:/ {print $2}')
+    proxy_port=$(networksetup -getwebproxy "$service" 2>/dev/null | awk '/Port:/ {print $2}')
+    socks_host=$(networksetup -getsocksfirewallproxy "$service" 2>/dev/null | awk '/Server:/ {print $2}')
+    socks_port=$(networksetup -getsocksfirewallproxy "$service" 2>/dev/null | awk '/Port:/ {print $2}')
+
+    if networksetup -getwebproxy "$service" 2>/dev/null | grep -q "Enabled: Yes"; then
+      export http_proxy="http://${proxy_host}:${proxy_port}"
+      export https_proxy="http://${proxy_host}:${proxy_port}"
+      export HTTP_PROXY="$http_proxy"
+      export HTTPS_PROXY="$https_proxy"
+      export NO_PROXY=localhost,127.0.0.1,::1,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,konka.com
+    else  
+      unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
+    fi  
+
+    if networksetup -getsocksfirewallproxy "$service" 2>/dev/null | grep -q "Enabled: Yes"; then
+      export all_proxy="socks5://${socks_host}:${socks_port}"
+      export ALL_PROXY="$all_proxy"
+    else  
+      unset all_proxy ALL_PROXY
+    fi  
+}
+
+sync_system_proxy  
